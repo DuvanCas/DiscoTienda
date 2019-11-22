@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiscoViewDlg" widgetVar="DiscoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDiscoTitle}">
+            <h:form id="DiscoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{discoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDiscoLabel_idDisco}"/>
+                        <h:outputText value="#{discoController.selected.idDisco}" title="#{bundle.ViewDiscoTitle_idDisco}"/>
+                        <h:outputText value="#{bundle.ViewDiscoLabel_nombre}"/>
+                        <h:outputText value="#{discoController.selected.nombre}" title="#{bundle.ViewDiscoTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewDiscoLabel_caratula}"/>
+                        <h:outputText value="#{discoController.selected.caratula}" title="#{bundle.ViewDiscoTitle_caratula}"/>
+                        <h:outputText value="#{bundle.ViewDiscoLabel_artista}"/>
+                        <h:outputText value="#{discoController.selected.artista}" title="#{bundle.ViewDiscoTitle_artista}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DiscoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

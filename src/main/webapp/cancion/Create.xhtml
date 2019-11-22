@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CancionCreateDlg" widgetVar="CancionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCancionTitle}">
+            <h:form id="CancionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cancionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCancionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{cancionController.selected.id}" title="#{bundle.CreateCancionTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateCancionLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{cancionController.selected.nombre}" title="#{bundle.CreateCancionTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateCancionLabel_duracion}" for="duracion" />
+                        <p:inputText id="duracion" value="#{cancionController.selected.duracion}" title="#{bundle.CreateCancionTitle_duracion}" />
+                        <p:outputLabel value="#{bundle.CreateCancionLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{cancionController.selected.precio}" title="#{bundle.CreateCancionTitle_precio}" />
+                        <p:outputLabel value="#{bundle.CreateCancionLabel_artista}" for="artista" />
+                        <p:selectOneMenu id="artista" value="#{cancionController.selected.artista}" required="true" requiredMessage="#{bundle.EditCancionRequiredMessage_artista}">
+                            <f:selectItems value="#{artistaController.itemsAvailableSelectOne}"
+                                           var="artistaItem"
+                                           itemValue="#{artistaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cancionController.create}" value="#{bundle.Save}" update="display,:CancionListForm:datalist,:growl" oncomplete="handleSubmit(args,'CancionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CancionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
